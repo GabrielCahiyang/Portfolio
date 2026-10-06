@@ -1,24 +1,24 @@
-import { motion } from 'motion/react';
-import { Mail, MapPin, Phone, Github, Facebook, Linkedin } from 'lucide-react';
+import { motion } from "motion/react";
+import { Mail, MapPin, Phone, Github, Facebook, Linkedin } from "lucide-react";
 
 export function Contact() {
   const contactInfo = [
     {
       icon: Mail,
-      label: 'Email',
-      value: 'gabzcah@gmail.com',
-      link: 'mailto:gabzcah@gmail.com',
+      label: "Email",
+      value: "gabzcah@gmail.com",
+      link: "mailto:gabzcah@gmail.com",
     },
     {
       icon: Phone,
-      label: 'Phone',
-      value: '09383309742',
-      link: 'tel:+639383309742',
+      label: "Phone",
+      value: "09383309742",
+      link: "tel:+639383309742",
     },
     {
       icon: MapPin,
-      label: 'Location',
-      value: 'Ormoc City, Philippines',
+      label: "Location",
+      value: "Ormoc City, Philippines",
       link: null,
     },
   ];
@@ -26,18 +26,18 @@ export function Contact() {
   const socialLinks = [
     {
       icon: Github,
-      label: 'GitHub',
-      link: 'https://github.com/Rivaly-Kun',
+      label: "GitHub",
+      link: "https://github.com/Rivaly-Kun",
     },
     {
       icon: Facebook,
-      label: 'Facebook',
-      link: 'https://www.facebook.com/Rival.d.orig',
+      label: "Facebook",
+      link: "https://www.facebook.com/Rival.d.orig",
     },
     {
       icon: Linkedin,
-      label: 'LinkedIn',
-      link: 'https://www.linkedin.com/in/gabriel-cahiyang-63224b306/',
+      label: "LinkedIn",
+      link: "https://www.linkedin.com/in/gabriel-cahiyang-63224b306/",
     },
   ];
 
@@ -82,7 +82,9 @@ export function Contact() {
                         {item.value}
                       </a>
                     ) : (
-                      <p className="text-sm text-muted-foreground">{item.value}</p>
+                      <p className="text-sm text-muted-foreground">
+                        {item.value}
+                      </p>
                     )}
                   </motion.div>
                 );
@@ -90,7 +92,9 @@ export function Contact() {
             </div>
 
             <div className="border-t border-border pt-6">
-              <h3 className="text-center font-semibold mb-4">Connect With Me</h3>
+              <h3 className="text-center font-semibold mb-4">
+                Connect With Me
+              </h3>
               <div className="flex justify-center gap-4">
                 {socialLinks.map((social) => {
                   const Icon = social.icon;
@@ -113,7 +117,7 @@ export function Contact() {
 
           <div className="text-center text-sm text-muted-foreground">
             <p>© 2025 Ernst Livin Gabriel B. Cahiyang. All rights reserved.</p>
-            <p className="mt-2">BSIT 3201 | Full-Stack Developer</p>
+            <p className="mt-2">Full-Stack Developer</p>
           </div>
         </motion.div>
       </div>

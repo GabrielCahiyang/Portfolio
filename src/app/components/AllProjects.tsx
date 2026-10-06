@@ -7,6 +7,7 @@ interface Project {
   tech: string[];
   platform: string;
   githubLink?: string;
+  repositories?: { label: string; url: string }[];
 }
 
 export function AllProjects() {
@@ -91,27 +92,48 @@ export function AllProjects() {
       githubLink: "https://github.com/Rivaly-Kun?tab=repositories",
     },
     {
-      title: "PayrollSystem",
+      title: "eFlow e-Governance",
       description:
-        "A payroll manager to compute salaries with deductions, overtime, and leave rules.",
-      tech: ["C# .NET WinForms", "SQLite"],
-      platform: "Windows",
-      githubLink: "https://github.com/Rivaly-Kun/PayrollSystem",
+        "An enterprise-grade e-governance and LGU work-management platform for governed tasks, inter-department proposals, fiscal workflows, and private local AI assistance.",
+      tech: [
+        "React",
+        "TypeScript",
+        "Vite",
+        "Supabase",
+        "FastAPI",
+        "Python",
+        "Llama.cpp",
+        "Polygon",
+      ],
+      platform: "Web",
+      repositories: [
+        {
+          label: "Client",
+          url: "https://github.com/GabrielCahiyang/eFlow-e-Governance-Client",
+        },
+        {
+          label: "AI Server",
+          url: "https://github.com/GabrielCahiyang/eFlow-e-Governance-Server",
+        },
+      ],
     },
     {
-      title: "Ollama Local LLM Control Panel",
+      title: "eFlow AI Operations Server",
       description:
-        "A private, local-first AI control panel and chat workspace for managing and comparing Ollama models with persistent chat history.",
+        "A secure local AI inference backend and operations console for eFlow, with GPU model management, governance intelligence, and authenticated remote access.",
       tech: [
         "React",
         "TypeScript",
         "Vite",
         "Tailwind CSS",
-        "IndexedDB",
-        "Ollama API",
+        "FastAPI",
+        "Python",
+        "llama.cpp",
+        "CUDA",
+        "Supabase",
       ],
       platform: "Web",
-      githubLink: "https://github.com/Rivaly-Kun/Ollama-Local-LLM-ControlPanel",
+      githubLink: "https://github.com/GabrielCahiyang/eFlow-e-Governance-Server",
     },
     {
       title: "Keitech School Student Admission System",
@@ -264,6 +286,30 @@ export function AllProjects() {
       platform: "Mobile",
       githubLink: "https://github.com/Rivaly-Kun/PakYaw_Mobile",
     },
+    {
+      title: "Sari-Fi",
+      description:
+        "A multi-role sari-sari store operations platform that brings together shopping, point of sale, supplier restocking, financing, payments, inventory, and audit trails in one workflow.",
+      tech: ["React", "TypeScript", "Vite", "Firebase", "Tailwind CSS"],
+      platform: "Web",
+      githubLink: "https://github.com/GabrielCahiyang/Sari-Fi",
+    },
+    {
+      title: "PASADA",
+      description:
+        "A real-time ride-hailing prototype for Ormoc City with passenger, driver, and organizer workspaces plus BCH Chipnet escrow for fixed fare settlement and refunds.",
+      tech: ["React", "TypeScript", "Firebase", "CashScript", "Bitcoin Cash"],
+      platform: "Web",
+      githubLink: "https://github.com/GabrielCahiyang/Pasada-v1",
+    },
+    {
+      title: "BingoPlus Satoshi",
+      description:
+        "A provably fair Web3 social casino on Bitcoin Cash Chipnet featuring Dice, Slots, and Mines, with automated testnet deposits, secure wallets, and auditable game outcomes.",
+      tech: ["React", "TypeScript", "Express", "Firebase", "CashScript", "Bitcoin Cash"],
+      platform: "Web",
+      githubLink: "https://github.com/GabrielCahiyang/BingoPlus-Satochi-BCH",
+    },
   ];
 
   return (
@@ -310,15 +356,24 @@ export function AllProjects() {
                       {project.platform}
                     </span>
                   </div>
-                  <a
-                    href={project.githubLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-2 hover:bg-accent rounded-full transition-colors flex-shrink-0"
-                    aria-label="View code"
-                  >
-                    <Github size={18} />
-                  </a>
+                  <div className="flex flex-shrink-0 gap-1">
+                    {(project.repositories ??
+                      (project.githubLink
+                        ? [{ label: "View code", url: project.githubLink }]
+                        : [])).map((repository) => (
+                      <a
+                        key={repository.url}
+                        href={repository.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-2 hover:bg-accent rounded-full transition-colors"
+                        aria-label={`View ${project.title} ${repository.label} repository`}
+                        title={repository.label}
+                      >
+                        <Github size={18} />
+                      </a>
+                    ))}
+                  </div>
                 </div>
 
                 <p className="text-sm text-muted-foreground mb-4 line-clamp-3">

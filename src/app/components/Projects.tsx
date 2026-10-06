@@ -8,6 +8,7 @@ interface Project {
   features: string[];
   platform: string;
   githubLink?: string;
+  repositories?: { label: string; url: string }[];
   highlight?: boolean;
 }
 
@@ -53,26 +54,29 @@ export function Projects() {
     },
 
     {
-      title: "Ollama Local LLM Control Panel",
+      title: "eFlow AI Operations Server",
       description:
-        "A private, local-first AI control panel and chat workspace for managing and comparing Ollama models.",
+        "A secure local AI inference backend and operations console powering eFlow's municipal governance workflows.",
       tech: [
         "React",
         "TypeScript",
         "Vite",
         "Tailwind CSS",
-        "IndexedDB",
-        "Ollama API",
+        "FastAPI",
+        "Python",
+        "llama.cpp",
+        "CUDA",
+        "Supabase",
       ],
       features: [
-        "Real-time model monitoring (VRAM, status, and speed)",
-        "Persistent chat history saved in IndexedDB",
-        "Dual AI mode for side-by-side model responses",
-        "Image and document context upload support",
-        "Live Ollama connection health monitoring",
+        "GPU-accelerated local GGUF model inference and hot-swapping",
+        "Live telemetry for GPU, VRAM, system health, queues, and logs",
+        "JWT-protected gateway with automatic Cloudflare Tunnel publishing",
+        "Laya governance routing and PyGAD process optimization",
+        "Polygon audit-ledger anchoring for governance events",
       ],
       platform: "Web",
-      githubLink: "https://github.com/Rivaly-Kun/Ollama-Local-LLM-ControlPanel",
+      githubLink: "https://github.com/GabrielCahiyang/eFlow-e-Governance-Server",
       highlight: true,
     },
     {
@@ -92,18 +96,36 @@ export function Projects() {
       highlight: true,
     },
     {
-      title: "PayrollSystem",
+      title: "eFlow e-Governance",
       description:
-        "A payroll manager to compute salaries with deductions, overtime, and leave rules",
-      tech: ["C# .NET WinForms", "SQLite"],
-      features: [
-        "Salary computation with deductions",
-        "Overtime calculation",
-        "Leave management",
-        "Employee record tracking",
+        "An enterprise-grade e-governance and work-management platform for local government units, combining governed project delivery, fiscal controls, and private local AI assistance.",
+      tech: [
+        "React",
+        "TypeScript",
+        "Vite",
+        "Supabase",
+        "FastAPI",
+        "Python",
+        "Llama.cpp",
+        "Polygon",
       ],
-      platform: "Windows",
-      githubLink: "https://github.com/Rivaly-Kun/PayrollSystem",
+      features: [
+        "Role-based municipal workspaces and governed task lifecycles",
+        "Inter-department proposal collaboration and fiscal tracking",
+        "Private GPU-accelerated DeepSeek AI with a secure JWT gateway",
+        "Workforce optimization and Polygon audit-ledger anchoring",
+      ],
+      platform: "Web",
+      repositories: [
+        {
+          label: "Client",
+          url: "https://github.com/GabrielCahiyang/eFlow-e-Governance-Client",
+        },
+        {
+          label: "AI Server",
+          url: "https://github.com/GabrielCahiyang/eFlow-e-Governance-Server",
+        },
+      ],
       highlight: true,
     },
     {
@@ -164,15 +186,22 @@ export function Projects() {
                     </span>
                   </div>
                   <div className="flex gap-2">
-                    <a
-                      href={project.githubLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-2 hover:bg-accent rounded-full transition-colors"
-                      aria-label="View code"
-                    >
-                      <Github size={18} />
-                    </a>
+                    {(project.repositories ??
+                      (project.githubLink
+                        ? [{ label: "View code", url: project.githubLink }]
+                        : [])).map((repository) => (
+                      <a
+                        key={repository.url}
+                        href={repository.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-2 hover:bg-accent rounded-full transition-colors"
+                        aria-label={`View ${project.title} ${repository.label} repository`}
+                        title={repository.label}
+                      >
+                        <Github size={18} />
+                      </a>
+                    ))}
                   </div>
                 </div>
 

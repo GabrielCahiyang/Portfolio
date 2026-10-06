@@ -46,7 +46,7 @@ export function Achievements() {
     },
     {
       title: "PayTaca BCH Hackathon",
-      description: "Top 4 finalist and ₱5,000 Best UI/UX Award recipient",
+      description: "PASADA — Top 4 finalist and ₱5,000 Best UI/UX Award recipient",
       year: "2026",
       icon: Trophy,
       highlight: true,

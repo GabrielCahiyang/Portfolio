@@ -48,6 +48,7 @@ export function Skills() {
         "OCR (Tesseract)",
         "Face-API",
         "Local LLMs (Llama3, Qwen2.5, DeepSeek-R1, Gemma3, Phi3, Ollama)",
+        "Laya (System 1 decision engine)",
       ],
     },
     {
@@ -59,6 +60,8 @@ export function Skills() {
         "Firestore",
         "Real-time Database",
         "Vaadin",
+        "Blockchain (Polygon, BCH)",
+        "PyGAD Process Mining",
       ],
     },
   ];

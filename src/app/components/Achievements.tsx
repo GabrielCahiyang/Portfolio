@@ -45,6 +45,16 @@ export function Achievements() {
       note: "3 event snapshots",
     },
     {
+      title: "PayTaca BCH Hackathon",
+      description: "Top 4 finalist and ₱5,000 Best UI/UX Award recipient",
+      year: "2026",
+      icon: Trophy,
+      highlight: true,
+      images: ["PayTaca BCH Hackathon 1.jpg", "PayTaca BCH Hackathon 2.jpg"],
+      note: "₱5,000 Best UI/UX Award · 2 event snapshots",
+    },
+
+    {
       title: "Byte Forward Competition",
       description:
         "STI College Ormoc representative - Placed among top 10 from 60+ schools",
@@ -108,6 +118,12 @@ export function Achievements() {
     },
     {
       title: "STI Bacolod Cluster CodeFest 2026",
+      result: "2nd Runner Up",
+      year: "2026",
+      featured: false,
+    },
+    {
+      title: "STI College CodeFest September 2026",
       result: "2nd Runner Up",
       year: "2026",
       featured: false,
@@ -289,29 +305,72 @@ export function Achievements() {
                   }`}
                 >
                   <div className="relative aspect-[16/10] overflow-hidden">
-                    <motion.button
-                      type="button"
-                      onClick={() => nextSlide(achievement)}
-                      className="absolute inset-0 block cursor-pointer"
-                      whileTap={{ scale: 0.995 }}
-                      aria-label={`Show next ${achievement.title} image`}
-                    >
-                      <motion.div
-                        key={`${achievement.title}-${activeIndex}`}
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ duration: 1.2, ease: "easeInOut" }}
-                        className="absolute inset-0"
-                      >
-                        <ImageWithFallback
-                          src={publicImage(mainImage)}
-                          alt={`${achievement.title} main snapshot`}
-                          className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                        />
-                      </motion.div>
+                    {achievement.images.length > 0 ? (
+                      <>
+                        <motion.button
+                          type="button"
+                          onClick={() => nextSlide(achievement)}
+                          className="absolute inset-0 block cursor-pointer"
+                          whileTap={{ scale: 0.995 }}
+                          aria-label={`Show next ${achievement.title} image`}
+                        >
+                          <motion.div
+                            key={`${achievement.title}-${activeIndex}`}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 1.2, ease: "easeInOut" }}
+                            className="absolute inset-0"
+                          >
+                            <ImageWithFallback
+                              src={publicImage(mainImage)}
+                              alt={`${achievement.title} main snapshot`}
+                              className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                            />
+                          </motion.div>
 
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
-                    </motion.button>
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
+                        </motion.button>
+
+                        {achievement.images.length > 1 && (
+                          <div className="absolute right-3 bottom-3 z-20 flex gap-1.5">
+                            {achievement.images.map((image, imageIndex) => (
+                              <button
+                                key={image}
+                                type="button"
+                                onClick={() =>
+                                  setSlide(achievement.title, imageIndex)
+                                }
+                                className={`h-10 w-14 overflow-hidden rounded-md border object-cover shadow transition-all ${
+                                  activeIndex === imageIndex
+                                    ? "border-white ring-2 ring-primary"
+                                    : "border-white/70 opacity-85 hover:opacity-100"
+                                }`}
+                                aria-label={`Show ${achievement.title} snapshot ${imageIndex + 1}`}
+                              >
+                                <ImageWithFallback
+                                  src={publicImage(image)}
+                                  alt={`${achievement.title} supporting snapshot ${imageIndex + 1}`}
+                                  className="h-full w-full object-cover"
+                                />
+                              </button>
+                            ))}
+                          </div>
+                        )}
+                      </>
+                    ) : (
+                      <div className="flex h-full items-center justify-center bg-gradient-to-br from-primary/20 via-accent to-amber-100/70">
+                        <div className="text-center">
+                          <Icon
+                            className="mx-auto mb-3 text-primary"
+                            size={42}
+                          />
+                          <p className="font-semibold text-primary">Top 6</p>
+                          <p className="text-sm text-muted-foreground">
+                            Best UI/UX Award
+                          </p>
+                        </div>
+                      </div>
+                    )}
 
                     <div className="absolute top-3 left-3 z-20 flex items-center gap-2 rounded-full bg-background/95 px-3 py-1.5">
                       <Icon
@@ -326,32 +385,6 @@ export function Achievements() {
                         {achievement.year}
                       </span>
                     </div>
-
-                    {achievement.images.length > 1 && (
-                      <div className="absolute right-3 bottom-3 z-20 flex gap-1.5">
-                        {achievement.images.map((image, imageIndex) => (
-                          <button
-                            key={image}
-                            type="button"
-                            onClick={() =>
-                              setSlide(achievement.title, imageIndex)
-                            }
-                            className={`h-10 w-14 overflow-hidden rounded-md border object-cover shadow transition-all ${
-                              activeIndex === imageIndex
-                                ? "border-white ring-2 ring-primary"
-                                : "border-white/70 opacity-85 hover:opacity-100"
-                            }`}
-                            aria-label={`Show ${achievement.title} snapshot ${imageIndex + 1}`}
-                          >
-                            <ImageWithFallback
-                              src={publicImage(image)}
-                              alt={`${achievement.title} supporting snapshot ${imageIndex + 1}`}
-                              className="h-full w-full object-cover"
-                            />
-                          </button>
-                        ))}
-                      </div>
-                    )}
                   </div>
 
                   <div className="p-5">
